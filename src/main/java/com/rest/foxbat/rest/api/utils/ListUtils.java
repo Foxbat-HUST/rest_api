@@ -2,7 +2,7 @@ package com.rest.foxbat.rest.api.utils;
 
 import java.util.List;
 
-public class CollectionsUtils {
+public class ListUtils {
     /**
      * check a list is null or has length = 0
      * @param list

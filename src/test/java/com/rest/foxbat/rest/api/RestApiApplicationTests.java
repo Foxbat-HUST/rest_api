@@ -17,7 +17,7 @@ class RestApiApplicationTests {
 	private UserDao userDao;
 	@Test
 	void contextLoads() {
-		List<Long> ids = new ArrayList<Long>(Arrays.asList(1L,2L));
+		List<Long> ids = new ArrayList<>(Arrays.asList(1L,2L));
 		List<User> user = userDao.findByIds(ids);
 		System.out.print("number of user " + user.get(0).toString());
 	}
