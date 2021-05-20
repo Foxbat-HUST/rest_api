@@ -1,11 +1,24 @@
 package com.rest.foxbat.rest.api.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Date;
+import com.rest.foxbat.rest.api.dto.UserInfoDto;
 
-@Entity(name = "USERS")
+import javax.persistence.*;
+import java.sql.Date;
+@SqlResultSetMapping(
+        name = "UserInfoDto.mapping",
+        classes = {
+                @ConstructorResult(
+                        targetClass = UserInfoDto.class,
+                        columns = {
+                                @ColumnResult(name = "NAME", type = String.class),
+                                @ColumnResult(name = "AGE", type = Integer.class),
+                                @ColumnResult(name = "EMAIL", type = String.class),
+                                @ColumnResult(name = "ZIPCODE", type = String.class),
+                                @ColumnResult(name = "ADDRESS", type = String.class)
+                        }
+                )
+        })
+@Entity(name = "USER")
 public class User {
     public User(){
 
@@ -21,19 +34,19 @@ public class User {
     @Id
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "age")
+    @Column(name = "AGE")
     private Integer age;
 
-    @Column(name = "email")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "create_ts")
+    @Column(name = "CREATE_TS")
     private Date createTs;
 
-    @Column(name = "update_ts")
+    @Column(name = "UPDATE_TS")
     private Date updateTs;
 
     public Long getId() {

@@ -1,12 +1,12 @@
 package com.rest.foxbat.rest.api;
 
-import com.rest.foxbat.rest.api.dao.UserDao;
-import com.rest.foxbat.rest.api.entity.User;
+import com.rest.foxbat.rest.api.dto.UserAddressDto;
+import com.rest.foxbat.rest.api.dto.UserInfoDto;
+import com.rest.foxbat.rest.api.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,12 +14,18 @@ import java.util.List;
 class RestApiApplicationTests {
 
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
+
 	@Test
-	void contextLoads() {
-		List<Long> ids = new ArrayList<>(Arrays.asList(1L,2L));
-		List<User> user = userDao.findByIds(ids);
-		System.out.print("number of user " + user.get(0).toString());
+	void testXmlBaseMapping() {
+		UserAddressDto user = userService.findUserAddress(1);
+		System.out.print(user.toString());
+	}
+
+	@Test
+	void testAnnotationBaseMapping() {
+		List<UserInfoDto> users = userService.findUsersInfo(Arrays.asList(1L));
+		users.stream().forEach(u -> System.out.println(u.toString()));
 	}
 
 }

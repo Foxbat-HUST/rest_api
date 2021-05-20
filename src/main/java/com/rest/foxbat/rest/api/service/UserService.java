@@ -1,28 +1,33 @@
-package com.rest.foxbat.rest.api.dao;
+package com.rest.foxbat.rest.api.service;
 
 import com.rest.foxbat.rest.api.dto.UserAddressDto;
 import com.rest.foxbat.rest.api.dto.UserInfoDto;
 import com.rest.foxbat.rest.api.entity.User;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface UserDao extends BaseDao<User,Long> {
+public interface UserService {
 
-    public static final String FIND_USER_ADDRESS = "User.findUserAddress";
-    public static final String FIND_USERS_INFO = "User.findUsersInfo";
+    void create();
 
     /**
-     * find user address by id
+     * get user address by id
      * @param id
      * @return
      */
     UserAddressDto findUserAddress(long id);
 
     /**
-     * find user information by ids
+     * get users info by ids
      * @param ids
      * @return
      */
     List<UserInfoDto> findUsersInfo(List<Long> ids);
+
+    /**
+     * get user entity by id
+     * @param id
+     * @return
+     */
+    User findById(long id);
 }

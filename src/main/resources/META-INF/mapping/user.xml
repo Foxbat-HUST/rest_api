@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+                 version="2.2">
+    <named-native-query name="User.findUserAddress" result-set-mapping="UserAddressDto.mapping">
+        <query><![CDATA[
+        SELECT  U.ID,
+                U.NAME,
+                U.AGE,
+                U.EMAIL,
+                A.ZIPCODE,
+                A.ADDRESS
+        FROM USER U JOIN ADDRESS A ON U.ID = A.USER_ID
+        WHERE U.ID = :id
+        ]]></query>
+    </named-native-query>
+    <named-native-query name="User.findUsersInfo" result-set-mapping="UserInfoDto.mapping">
+        <query><![CDATA[
+        SELECT  U.NAME,
+                U.AGE,
+                U.EMAIL,
+                A.ZIPCODE,
+                A.ADDRESS
+        FROM USER U JOIN ADDRESS A ON U.ID = A.USER_ID
+        WHERE U.ID IN (:ids)
+        ]]></query>
+    </named-native-query>
+    <sql-result-set-mapping name="UserAddressDto.mapping">
+        <constructor-result target-class="com.rest.foxbat.rest.api.dto.UserAddressDto">
+            <column name="ID" class="java.lang.Long"/>
+            <column name="NAME" class="java.lang.String"/>
+            <column name="AGE" class="java.lang.Integer"/>
+            <column name="EMAIL" class="java.lang.String"/>
+            <column name="ZIPCODE" class="java.lang.String"/>
+            <column name="ADDRESS" class="java.lang.String"/>
+        </constructor-result>
+    </sql-result-set-mapping>
+</entity-mappings>
