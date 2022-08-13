@@ -18,7 +18,7 @@ import java.sql.Date;
                         }
                 )
         })
-@Entity(name = "USER")
+@Entity(name = "users")
 public class User {
     public User(){
 
@@ -34,19 +34,19 @@ public class User {
     @Id
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "AGE")
+    @Column(name = "age")
     private Integer age;
 
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "CREATE_TS")
+    @Column(name = "created_at")
     private Date createTs;
 
-    @Column(name = "UPDATE_TS")
+    @Column(name = "updated_at")
     private Date updateTs;
 
     public Long getId() {
